@@ -1,16 +1,15 @@
-from mcp.server.fastmcp import FastMCP
+from fastmcp import FastMCP
 
 import requests
 import json
-import asyncio
 import logging
+logging.basicConfig(level=logging.DEBUG)
 
 # Create an MCP server
 mcp = FastMCP("Demo")
+
 summit_service_url = "https://qamanualapex20copilotphase1-1.symphonysummit.com/api-copilot/REST/Summit_RESTWCF.svc/RESTService/CommonWS_JsonObjCall"
 api_key = "vBNaLe5Lm7OdrwV2LLNHsxCfaPxyaP/X4KCbYv8E+ls="
-
-logging.basicConfig(level=logging.DEBUG)
 
 @mcp.tool()
 def create_incident(
@@ -288,5 +287,4 @@ def get_ticket_details(userID : int) -> dict:
 
 
 if __name__ == "__main__":
-    #asyncio.run(main())
-     mcp.run(transport="stdio")
+     mcp.run(transport="http")

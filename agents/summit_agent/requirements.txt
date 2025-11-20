@@ -3,3 +3,4 @@ langchain
 langchain-mcp-adapters
 openai
 bentoml
+fastmcp
