@@ -1,13 +1,16 @@
 from mcp.server.fastmcp import FastMCP
+
 import requests
 import json
 import asyncio
+import logging
 
 # Create an MCP server
 mcp = FastMCP("Demo")
 summit_service_url = "https://qamanualapex20copilotphase1-1.symphonysummit.com/api-copilot/REST/Summit_RESTWCF.svc/RESTService/CommonWS_JsonObjCall"
 api_key = "vBNaLe5Lm7OdrwV2LLNHsxCfaPxyaP/X4KCbYv8E+ls="
 
+logging.basicConfig(level=logging.DEBUG)
 
 @mcp.tool()
 def create_incident(
@@ -44,7 +47,6 @@ def create_incident(
     ...     caller_email="sysadmin@example.com",
     ...     user_log="flickering more"
     ... )
-    >>> print(response)
     """
 
     payload = {
@@ -129,7 +131,6 @@ def list_incidents(
     >>> response = list_incidents(
     ...     caller_email="sysadmin@example.com",
     ... )
-    >>> print(response)
     """
 
     payload = {
@@ -176,7 +177,8 @@ def list_incidents(
     response = requests.post(summit_service_url, json=payload, headers=headers)
     tickets = json.loads(response.text)["OutputObject"]["MyTickets"]
 
-    print(tickets[:3])
+    #print("Printing Tickets:\n")
+    #print(tickets[:3])
 
     return {
         "Status": response.status_code,
@@ -285,9 +287,6 @@ def get_ticket_details(userID : int) -> dict:
     }
 
 
-def main():
-    # Initialize and run the server
-    asyncio.run(mcp.run(transport='stdio'))
-
 if __name__ == "__main__":
-    main()
+    #asyncio.run(main())
+     mcp.run(transport="stdio")

@@ -1,13 +1,8 @@
 import openai
-#from langchain_openai import ChatOpenAI
-#from langfuse.openai import openai
 
 from langgraph.graph import StateGraph, END
 from langfuse.langchain import CallbackHandler
-#from langfuse.callback import CallbackHandler
 
-# 1️⃣ Initialize Langfuse tracer
-#langfuse_handler = CallbackHandler()
 
 from langfuse import get_client
 
